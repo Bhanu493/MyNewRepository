@@ -1,0 +1,414 @@
+﻿lab 11
+
+package com.lab11.getting;
+
+
+import com.lab11.userinput.GettingUserinput;
+
+
+public interface Validation 
+{
+
+public String namevalidation();
+
+
+public String mailvalidation();
+
+public String numbervalidation();
+
+public void setCustomername(String name);
+public void Tablevalidation(GettingUserinput ui);
+
+public void print();
+
+public String namevalidation(GettingUserinput gui);
+
+}
+
+
+
+
+
+
+package com.lab11.getting;
+
+
+import java.util.regex.Pattern;
+
+
+import com.cg.eis.pl.Userinput;
+
+import com.lab11.userinput.GettingUserinput;
+
+
+import java.time.LocalDate;
+
+import java.util.regex.Matcher;
+
+//import org.hamcrest.Matcher;
+
+
+public class Tablevalidation implements Validation 
+{
+
+	public String customername;
+	
+public String email;
+	
+public String phoneno;
+	
+public GettingUserinput ui;
+	
+public Tablevalidation()
+	
+{
+	
+}
+	
+	
+public Tablevalidation(GettingUserinput ui)
+
+{
+		
+this.ui=ui;
+	
+}
+	
+	
+	
+	
+public String namevalidation(GettingUserinput ui)
+	
+{
+		
+customername=ui.getName();
+
+			
+customername=customername.replace(customername.charAt(0),Character.toUpperCase(customername.charAt(0)));
+	
+	
+		return customername;
+	
+}
+	
+	
+	
+	
+public String mailvalidation()
+	
+{
+		
+String regex = "^(.+)@(.+)$";
+	
+         email =ui.email;
+		
+         Pattern pattern = Pattern.compile(regex);
+	
+	 Matcher match=pattern.matcher(regex);
+		
+if(match.matches()==true)
+		
+{
+		
+return email;
+	
+	}
+		
+else
+			
+return "error";
+	
+}
+
+	public String numbervalidation()
+	
+{
+
+		phoneno=ui.pno;
+		
+                if(phoneno.length()==10)
+
+		return phoneno;
+		
+                else
+
+		return "error";
+
+	}
+
+	public LocalDate Enteringdate()
+
+	{
+
+		return LocalDate.now();
+
+	}
+	
+	
+public static void main(String[] args)
+	
+{
+
+		 GettingUserinput ui=new GettingUserinput() ;
+
+		Tablevalidation tv= new Tablevalidation(ui);
+		
+                tv.namevalidation(ui);
+
+		System.out.println(ui.getName());
+
+		/*System.out.println(tv.mailvalidation());
+
+		System.out.println(tv.numbervalidation());
+
+		System.out.println(tv.Enteringdate());*/
+	
+	/*public String getEmail()
+ {
+
+		return email;
+
+	}
+
+	public void setEmail(String email)
+ {
+
+		this.email = email;
+
+	}
+
+	public String getPhoneno() {
+
+		return phoneno;
+
+	}
+	
+public void setPhoneno(String phoneno)
+ {
+		
+this.phoneno = phoneno;}*/
+
+	}
+
+}
+
+
+
+
+
+
+package Lab11;
+
+
+import java.io.FileInputStream;
+
+import java.io.IOException;
+
+import java.sql.Connection;
+
+import java.sql.Date;
+
+import java.sql.PreparedStatement;
+
+import java.sql.SQLException;
+
+import java.time.LocalDate;
+
+import java.util.Properties;
+
+
+import javax.activation.DataSource;
+
+
+import com.lab11.getting.Tablevalidation;
+
+import com.lab11.getting.Validation;
+
+import com.lab11.userinput.GettingUserinput;
+
+
+import Lab11properties.MobileProps;
+
+import oracle.jdbc.pool.OracleDataSource;
+
+
+public class Generaldatasource 
+{
+
+	public OracleDataSource ods=null;
+
+	public Connection con=null;
+	
+public int purchaseid;
+
+	public String cname;
+	
+public String mailid;
+
+	public String phoneno;
+	
+public LocalDate date;
+
+	public int mobileid;
+	
+public Generaldatasource( int purchaseid,String cname,String mailid,String phoneno,LocalDate date,int mobileid)
+
+	{
+
+		this.cname=cname;
+		
+                this.purchaseid=purchaseid;
+
+		this.mailid=mailid;
+		
+                this.phoneno=phoneno;
+		
+                this.date=date;
+		
+                this.mobileid=mobileid;
+		
+
+	}
+	
+public OracleDataSource datsrc(Properties p)
+
+	{
+		
+FileInputStream fis=null;
+		
+//MobileProps mp=new MobileProps();
+	
+	try
+	
+	{
+
+		OracleDataSource ods=new OracleDataSource();
+		
+//throw new SQLException();
+
+		try
+	
+	{
+
+		fis=new FileInputStream("Example.properties");
+
+		p.load(fis);
+	
+	}
+		
+
+		catch(IOException e)
+	
+	{
+			
+e.printStackTrace();
+	
+	}
+		
+
+		
+        ods.setURL(p.getProperty("url"));// or ods.setURL(por.getProperty())
+		
+	
+	ods.setUser(p.getProperty("user"));
+	
+	ods.setPassword(p.getProperty("password"));
+		
+        ods.setDriverType(p.getProperty("driver"));
+		
+        ods.setNetworkProtocol("tcp");
+		
+        con=ods.getConnection("system","bhanu.493");
+
+		System.out.println("connection established");
+		
+                PreparedStatement pstmt=con.prepareStatement("insert into purchasingdetails values(?,?,?,?,?,?)");
+	
+	pstmt.setInt(1,purchaseid);
+
+		pstmt.setString(2, cname);
+
+		pstmt.setString(3,mailid);
+
+		pstmt.setString(4,phoneno);
+		
+pstmt.setDate(5,Date.valueOf(date));
+
+		pstmt.setInt(6, mobileid);
+
+		int count=pstmt.executeUpdate();
+		
+System.out.println("updated successfully"+count +" row(s)");
+	
+	PreparedStatement pstmt1=con.prepareStatement("update  mobile set quantity=quantity-1 where  mobileid=? ");
+		
+
+		pstmt1.setInt(1, mobileid);
+	
+	int count1=pstmt1.executeUpdate();
+	
+	System.out.println("changed"+count);
+	
+	return ods;
+		
+}
+		
+catch(SQLException s)
+
+		{
+		
+	s.printStackTrace();
+	
+	}
+		
+finally
+	
+	{
+		
+	
+		}
+	return ods;
+		
+	
+	
+	}
+	
+public  void Inserting(int purchaseid,String cname,String mailid,String phoneno,LocalDate date,int mobileid)
+
+	{
+	
+	try
+	
+	{
+	
+	PreparedStatement pstmt=con.prepareStatement("insert into purchasingdetails values(?,?,?,?,?,?)");
+	
+	pstmt.setInt(1,purchaseid);
+	
+	pstmt.setString(2, cname);
+	
+	pstmt.setString(3,mailid);
+
+		pstmt.setString(4,phoneno);
+
+		pstmt.setDate(5,Date.valueOf(date));
+	
+	pstmt.setInt(6, mobileid);
+	
+	int count=pstmt.executeUpdate();
+		
+System.out.println("updated successfully   "+count +" row(s)");
+
+		}
+		
+catch(SQLException s)
+		
+{
+
+			s.printStackTrace();
+
+		}
+
+	}
+
+	
