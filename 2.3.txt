@@ -1,0 +1,45 @@
+package oops;
+
+public class P {
+	static String firstName;
+	public String getFirstName() {
+		return firstName;
+	}
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
+	}
+	public String getLastName() {
+		return lastName;
+	}
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
+	}
+	public char getGender() {
+		return gender;
+	}
+	public void setGender(char gender) {
+		this.gender = gender;
+	}
+	static String lastName;
+	static char gender;
+	
+	P(){
+		firstName="Divya";
+		lastName="BHarathi";
+		gender='F';
+	}
+	P(String FirstName,String lastName,char gender){
+		this.firstName=getFirstName();
+		this.lastName=getLastName();
+		this.gender=getGender();
+	}
+
+public static void main(String[] args) {
+	P p1=new P();
+	System.out.println("Person details:");
+	System.out.println("--------------");
+	System.out.println("Firstname:"+P.firstName);
+	System.out.println("lastName:"+P.lastName);
+	System.out.println("gender:"+P.gender);
+}
+}

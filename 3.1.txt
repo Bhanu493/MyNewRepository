@@ -1,0 +1,24 @@
+package oops;
+import java.util.Scanner;
+public class Str {
+	String s1=new String();
+	String s2=new String();
+
+	
+public static void main(String[] args)
+{
+	Scanner c = new Scanner(System.in);
+	System.out.println("Enter String1 : ");
+	String s1 = c.nextLine();
+	System.out.println("Enter String2 : ");
+	String s2 = c.nextLine();
+	String addedstring=s1.concat(s2);
+	System.out.println("New String is : "+addedstring);
+
+}
+
+}
+
+
+
+

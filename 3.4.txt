@@ -1,0 +1,20 @@
+package oops;
+
+import java.time.LocalDate;
+import java.time.Period;
+
+public class Date2 {
+	public static void main(String[] args)
+	{
+		LocalDate d1=LocalDate.of(1997,8,25);
+		LocalDate d2=LocalDate.of(1998,3,4);
+		Period dif=Period.between(d1,d2);
+		System.out.printf("Difference is %d years %d months %d days",dif.getYears(),dif.getMonths(),dif.getDays());
+	}
+
+}
+
+
+
+
+Difference is 0 years 6 months 7 days

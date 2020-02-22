@@ -1,0 +1,86 @@
+package oops;
+import java.time.*; 
+
+public class excep2 {
+
+
+static String firstname; 
+
+static String lastname; 
+ 
+double weight; 
+
+ String Gender; 
+
+excep2()  { 
+
+ firstname=null; 
+
+ lastname= null; 
+
+ Gender="M"; 
+
+ weight= 70; 
+
+  } 
+
+ static void checkage(int age) 
+
+ { 
+
+ if(age<=15) 
+
+ try 
+
+ { 
+
+ throw new ArithmeticException("access denied age must be atleast 15"); 
+
+ } 
+
+ catch(ArithmeticException e) 
+
+ { 
+
+ System.out.println(e.getMessage()); 
+
+ } 
+
+ else 
+
+ { 
+
+ System.out.println("Access garnted"); 
+
+ } 
+
+ } 
+
+ public static void main(String []args) { 
+
+ excep2 pd =new excep2();	   
+
+   System.out.println("personaldetails"); 
+
+   System.out.println("gender:"+pd.Gender); 
+
+   System.out.println("weight:"+pd.weight); 
+
+   checkage(14); 
+
+    
+
+} 
+
+} 
+
+
+ 
+
+
+
+ 
+personaldetails
+gender:M
+weight:70.0
+access denied age must be atleast 15

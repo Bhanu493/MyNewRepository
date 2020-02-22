@@ -1,0 +1,30 @@
+package oops;
+
+import java.util.*; 
+
+class Arr2 { 
+	public static void main(String args[]) 
+	{ 
+
+	ArrayList<String> al = new ArrayList<String>(); 
+		al.add("register"); 
+		al.add("projecor"); 
+		al.add("marker"); 
+		al.add("chalk"); 
+		al.add("board"); 
+
+	System.out.println(" ArrayList is: "+ al); 
+
+		Collections.sort(al); 
+
+		System.out.println("Sorted ArrayList is"+ al); 
+	} 
+} 
+
+
+
+
+
+ ArrayList is: [register, projecor, marker, chalk, board]
+Sorted ArrayList is[board, chalk, marker, projecor, register]
+

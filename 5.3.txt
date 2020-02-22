@@ -1,0 +1,84 @@
+package com.cg.eis.pl; 
+
+import com.cg.eis.bean.*; 
+
+import java.util.Scanner; 
+
+import java.util.Scanner; 
+
+public class Empuser { 
+
+public static void main(String[] args)   
+
+{ 
+
+Scanner obj = new Scanner(System.in); 
+
+ 
+
+System.out.println("Enter the details"); 
+
+String name = obj.next(); 
+
+double salary = obj.nextDouble(); 
+
+String designation = obj.next(); 
+
+ 
+
+System.out.println("Employee details are"); 
+
+System.out.println("Enter the name"); 
+
+System.out.println("Name : "+name); 
+
+System.out.println("Enter salary"); 
+
+System.out.println("Salary : "+salary); 
+
+System.out.println("Enter designation"); 
+
+System.out.println("Designation : "+designation); 
+
+ 
+
+Employeelass me = new Employeelass(name,salary,designation); 
+
+me.insuranceScheme(); 
+
+ obj.close(); 
+
+} 
+} 
+
+ 
+
+Enter the details 
+
+ supraja 
+
+25000 
+
+Assistant 
+
+Employee details are 
+
+Enter the name 
+
+Name : supraja 
+
+Enter salary 
+
+Salary : 25000.0 
+
+Enter designation 
+
+Designation : Assistant 
+
+Scheme B 
+
+ 
+
+ 
+
+ 
