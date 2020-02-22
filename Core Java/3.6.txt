@@ -1,0 +1,31 @@
+package oops;
+import java.time.*;
+
+class Zone 
+{
+        public static void main(String[] args) {
+	  ZoneId zone1=ZoneId.of("Asia/Karachi");
+			  LocalTime present=LocalTime.now(zone1);
+         LocalDate present1=LocalDate.now(zone1);			  
+			  System.out.println("Time & Date in Asia/Karachi");
+			  System.out.println(present);
+			  System.out.println(present1);
+			  ZoneId zone2=ZoneId.of("Europe/London");
+			  LocalTime present3=LocalTime.now(zone2);
+         LocalDate present4=LocalDate.now(zone2);			  
+			  System.out.println("Time & Date in Europe/London");
+			  System.out.println(present3);
+			  System.out.println(present4);
+			  
+	  }
+	}
+
+
+
+
+Time & Date in Asia/Karachi
+10:09:51.961
+2020-02-08
+Time & Date in Europe/London
+05:09:51.985
+2020-02-08

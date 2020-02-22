@@ -1,0 +1,147 @@
+8.1)
+package oops;
+import java.io.*;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.Scanner;
+import java.util.*;
+
+public class reverse {
+
+	private static BufferedReader input;
+
+	public static void main(String[] args) {
+		try{
+			File rf=new File("G:\\file.txt");
+			
+			Scanner myReader=new Scanner(rf);
+			while(myReader.hasNextLine()) {
+			String data=myReader.nextLine();
+			System.out.println(data);
+
+				StringBuffer buffer=new StringBuffer(data);
+				buffer=buffer.reverse();
+				String k=buffer.toString();
+				System.out.println(k);
+				
+			}
+			myReader.close();
+			}
+			catch(FileNotFoundException e)
+			{
+				System.out.println("File not found");
+			}
+
+	}
+	}
+output:
+hai hello
+olleh iah
+
+8.2)
+package oops;
+import java.io.*;
+import java.util.*;
+public class numbertxt {
+	
+	public static void main(String[] args) throws NumberFormatException, IOException {
+
+		FileReader fr=new FileReader("G:\\file2.txt");
+		BufferedReader br=new BufferedReader(fr);
+		String data=null;
+		int a=0;
+		while((data=br.readLine())!=null)
+		{
+			Scanner sc=new Scanner(data);
+			sc.useDelimiter(",");
+			while(sc.hasNext())
+			{
+				a=Integer.parseInt(sc.next());
+				if(a%2==0)
+					System.out.println(a);
+			}
+			
+		}
+		fr.close();
+		br.close();
+	}
+}
+output:
+2
+4
+6
+8
+10
+
+8.3)
+package com.cg.eis.pl;
+
+import com.cg.eis.bean.*;
+import com.cg.eis.exception.EmployeeException;
+import java.io.IOException;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.ObjectOutputStream;
+import java.util.Scanner;
+import java.util.Scanner;
+public class Empuser {
+	static  void checksalary(double salary)
+	{
+		if (salary <= 3000)
+		{
+			try
+			{
+				throw new Exception("Enter correct salary");
+			}
+			catch(Exception e)
+			{
+				System.out.println(e.getMessage());
+			}
+		}
+	}
+public static void main(String[] args) throws Exception 
+	{
+		Scanner obj = new Scanner(System.in);
+		Empuser e=new Empuser();
+		
+		System.out.println("Enter the details");
+		System.out.println("Enter the name");
+		String name = obj.next();
+		System.out.println("Enter Salary");
+		double salary = obj.nextDouble();
+		System.out.println("Enter Designation");
+		String designation = obj.next();
+
+		
+		
+		Employeelass me = new Employeelass(name,salary,designation);
+		me.insuranceScheme();
+		System.out.println("Insurance Scheme to "+me.getName()+"is:"+me.getInsuranceScheme());
+		System.out.println(me.toString());
+		FileOutputStream fos = new FileOutputStream(new File("G://file.txt"));
+		ObjectOutputStream oos = new ObjectOutputStream(fos);
+		oos.writeObject(me);
+		
+		obj.close();
+	}
+
+
+
+	}
+
+OUTPUT:
+Enter the details
+Enter the name
+hari
+Enter Salary
+21000
+Enter Designation
+analyst
+Scheme A
+Insurance Scheme to mnis:Scheme A
+com.cg.eis.bean.Employeelass@55f96302
+notepad:
+¬í _sr _com.cg.eis.bean.EmployeelassX_®‡}ëH¦_ _I _idD _salaryL 
+designationt _Ljava/lang/String;L _insuranceSchemeq ~ _L _nameq ~ _xp    A_j     t  Managert _Scheme At _mn
+
+
